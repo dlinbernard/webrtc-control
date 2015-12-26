@@ -1,5 +1,5 @@
 'use strict';
-
+/*  */
 var self            = require('sdk/self'),
     tabs            = require('sdk/tabs'),
     timers          = require('sdk/timers'),
