@@ -1,0 +1,15 @@
+{
+  "name": "webrtccontrol",
+  "title": "WebRTC Control",
+  "license": "mozilla public license 1.1",
+  "id": "jid0-oFxt2GoakYukFl7Yp42Kq@jetpack",
+  "description": "Have control over WebRTC (disable or enable) and protect your IP address.",
+  "icon": "resource://jid0-oFxt2GoakYukFl7Yp42Kq-at-jetpack/data/icons/enabled/32.png",
+  "main": "lib/common.js",
+  "version": "0.1.0",
+  "lib": "lib",
+  "permissions": {
+    "private-browsing": true,
+    "unsafe-content-script": true
+  }
+}
