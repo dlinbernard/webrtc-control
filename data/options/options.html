@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link type="text/css" rel="stylesheet" href="options.css">
+  </head>
+  <body>
+    <div class="logo"></div>
+    <div class="container">
+      <table class="checkbox">
+        <tr>
+          <td class="title">
+            <label for="inject">A. Block WebRTC Support Detection</label>
+            <input type="checkbox" id="inject">
+          </td>
+        </tr>
+        <tr>
+          <td class="note">
+            <p>Note: when this option is marked, "RTCPeerConnection" & "RTCDataChannel" are blocked.</p>
+          </td>
+        </tr>
+        <tr>
+          <td class="separator"></td>
+        </tr>
+        <tr>
+          <td class="title">
+            <label for="devices">B. Block Navigator Media Devices</label>
+            <input type="checkbox" id="devices">
+          </td>
+        </tr>
+        <tr>
+          <td class="note">
+            <p>Note: when this option is marked, all video and audio devices are blocked (not active by default).</p>
+          </td>
+        </tr>
+      </table>
+      <table class="select">
+        <tr>
+          <td class="title">
+            <p>C. Select an IP handling policy for WebRTC</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <select id="method">
+              <option value="default">Default (WebRTC leak protection is OFF)</option>
+              <option value="default_public_and_private_interfaces">Default public and private interfaces</option>
+              <option value="default_public_interface_only">Default public interface only</option>
+              <option value="disable_non_proxied_udp">Disable non proxied udp</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td class="note">
+            <p>Note: default option is "Disable non proxied udp"</p>
+          </td>
+        </tr>
+      </table>
+      <table class="buttons">
+        <tr>
+          <td><input type="button" id="test" value="Test WebRTC Leak"></td>
+          <td><input type="button" id="support" value="Open support page"></td>
+          <td><input type="button" id="donation" value="Make a donation"></td>
+        </tr>
+      </table>
+    </div>
+    <script type="text/javascript" src="options.js"></script>
+  </body>
+</html>

@@ -1,0 +1,97 @@
+body {
+  border: 0;
+  color: #555;
+  width: 800px;
+  padding: 0 5px;
+  margin: 5px auto;
+}
+
+p, body, input, label, select {
+  font-size: 12px;
+  font-family: arial, sans-serif;
+}
+
+table {
+  border: 0;
+  width: 100%;
+  color: #555;
+  margin: auto;
+  padding: 10px;
+  border-spacing: 0 10px;
+}
+
+table tr td {
+  padding: 0;
+  height: 22px;
+}
+
+p, label {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  color: #333;
+  user-select: none;
+}
+
+select {
+  padding: 0;
+  width: 100%;
+  color: #555;
+  margin: auto;
+  height: 42px;
+  outline: none;
+  cursor: pointer;
+  box-shadow: none;
+  background: #fff;
+  text-indent: 5px;
+  font-family: monospace;
+  border: solid 1px rgba(0,0,0,0.1);
+}
+
+input[type="checkbox"] {
+  margin: 5px;
+  float: right;
+  vertical-align: middle;
+}
+
+input[type="button"] {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  color: #555;
+  height: 42px;
+  cursor: pointer;
+  box-shadow: none;
+  background: #fff;
+  line-height: 42px;
+  box-sizing: border-box;
+  transition: 300ms ease all;
+  border: solid 1px rgba(0,0,0,0.1);
+}
+
+input[type="button"]:hover {
+  background: rgba(0,0,0,0.05);
+}
+
+.logo {
+  width: 100%;
+  height: 128px;
+  border-bottom: solid 1px rgba(0,0,0,0.1);
+  background: url("../icons/128.png") no-repeat center center;
+  background-size: 64px;
+}
+
+.note p {
+  color: #777;
+  font-family: arial, sans-serif;
+}
+
+.separator {
+  height: 28px;
+}
+
+.buttons {
+  margin-top: 10px;
+  max-width: 600px;
+  border-spacing: 5px 0;
+}

@@ -1,0 +1,49 @@
+{
+  "version": "0.2.8",
+  "manifest_version": 2,
+  "name": "WebRTC Control",
+  "short_name": "webrtc-control",
+  "homepage_url": "https://mybrowseraddon.com/webrtc-control.html",
+  "description": "Have control over WebRTC (disable | enable) and protect your IP address.",
+  "options_ui": {
+    "open_in_tab": true,
+    "page": "data/options/options.html"
+  },
+  "permissions": [
+    "privacy", 
+    "storage", 
+    "<all_urls>", 
+    "contextMenus"
+  ],
+  "background": {
+    "persistent": false,
+    "scripts": [
+      "lib/config.js", 
+      "lib/chrome.js",
+      "lib/runtime.js",
+      "lib/common.js"
+    ]
+  },
+  "browser_action": {
+    "default_title": "WebRTC Control",
+    "default_icon": {
+      "16": "data/icons/16.png",
+      "32": "data/icons/32.png",
+      "48": "data/icons/48.png",
+      "64": "data/icons/64.png"
+    }
+  },
+  "content_scripts": [{
+		"all_frames": true,
+		"run_at": "document_start",
+		"js": ["data/content_script/inject.js"],
+		"matches": ["http://*/*", "https://*/*", "ftp://*/*"]
+	}],
+  "icons": {
+    "16": "data/icons/16.png",
+    "32": "data/icons/32.png",
+    "48": "data/icons/48.png",
+    "64": "data/icons/64.png",
+    "128": "data/icons/128.png"
+  }
+}
