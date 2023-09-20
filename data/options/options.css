@@ -1,20 +1,21 @@
 body {
   border: 0;
-  color: #555;
-  width: 800px;
-  padding: 0 5px;
-  margin: 5px auto;
+  padding: 0;
+  color: #333;
+  width: 100%;
+  margin: auto;
+  max-width: 1080px;
 }
 
-p, body, input, label, select {
-  font-size: 12px;
+p, body, input, label {
+  font-size: 13px;
   font-family: arial, sans-serif;
 }
 
 table {
   border: 0;
   width: 100%;
-  color: #555;
+  color: #333;
   margin: auto;
   padding: 10px;
   border-spacing: 0 10px;
@@ -23,6 +24,7 @@ table {
 table tr td {
   padding: 0;
   height: 22px;
+  line-height: 22px;
 }
 
 p, label {
@@ -36,29 +38,31 @@ p, label {
 select {
   padding: 0;
   width: 100%;
-  color: #555;
+  color: #333;
   margin: auto;
   height: 42px;
   outline: none;
+  font-size: 14px;
   cursor: pointer;
   box-shadow: none;
   background: #fff;
-  text-indent: 5px;
+  font-weight: 600;
+  text-indent: 10px;
   font-family: monospace;
-  border: solid 1px rgba(0,0,0,0.1);
+  border: solid 1px rgba(0,0,0,0.25);
 }
 
-input[type="checkbox"] {
-  margin: 5px;
+input[type='checkbox'] {
+  margin: 10px;
   float: right;
   vertical-align: middle;
 }
 
-input[type="button"] {
+input[type='button'] {
   margin: 0;
   padding: 0;
   width: 100%;
-  color: #555;
+  color: #333;
   height: 42px;
   cursor: pointer;
   box-shadow: none;
@@ -66,24 +70,16 @@ input[type="button"] {
   line-height: 42px;
   box-sizing: border-box;
   transition: 300ms ease all;
-  border: solid 1px rgba(0,0,0,0.1);
+  border: solid 1px rgba(0,0,0,0.25);
 }
 
-input[type="button"]:hover {
+input[type='button']:hover {
   background: rgba(0,0,0,0.05);
 }
 
-.logo {
-  width: 100%;
-  height: 128px;
-  border-bottom: solid 1px rgba(0,0,0,0.1);
-  background: url("../icons/128.png") no-repeat center center;
-  background-size: 64px;
-}
-
 .note p {
-  color: #777;
-  font-family: arial, sans-serif;
+  color: #555;
+  text-indent: 5px;
 }
 
 .separator {
@@ -91,7 +87,15 @@ input[type="button"]:hover {
 }
 
 .buttons {
-  margin-top: 10px;
-  max-width: 600px;
+  margin-top: 20px;
+  max-width: 700px;
   border-spacing: 5px 0;
+}
+
+.logo {
+  width: 100%;
+  height: 128px;
+  border-bottom: solid 1px rgba(0,0,0,0.1);
+  background: url('../icons/128.png') no-repeat center center;
+  background-size: 64px;
 }

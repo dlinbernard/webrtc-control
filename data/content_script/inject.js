@@ -1,65 +1,67 @@
 var background = (function () {
-  var tmp = {};
-  chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-    for (var id in tmp) {
+  let tmp = {};
+  /*  */
+  chrome.runtime.onMessage.addListener(function (request) {
+    for (let id in tmp) {
       if (tmp[id] && (typeof tmp[id] === "function")) {
         if (request.path === "background-to-page") {
-          if (request.method === id) tmp[id](request.data);
+          if (request.method === id) {
+            tmp[id](request.data);
+          }
         }
       }
     }
   });
   /*  */
   return {
-    "receive": function (id, callback) {tmp[id] = callback},
-    "send": function (id, data) {chrome.runtime.sendMessage({"path": "page-to-background", "method": id, "data": data})}
+    "receive": function (id, callback) {
+      tmp[id] = callback;
+    },
+    "send": function (id, data) {
+      chrome.runtime.sendMessage({
+        "method": id, 
+        "data": data,
+        "path": "page-to-background"
+      }, function () {
+        return chrome.runtime.lastError;
+      });
+    }
   }
 })();
 
 var config = {
-  "media": {
-    "devices": function () {
-      if (typeof navigator.mediaDevices !== "undefined") navigator.mediaDevices = undefined;
-      Object.defineProperty(navigator.__proto__,  "mediaDevices", {"value": function () {return null}});
-    }
-  },
-  "support": {
-    "detection": function () {
-      if (typeof navigator.getUserMedia !== "undefined") navigator.getUserMedia = undefined;
-      if (typeof window.MediaStreamTrack !== "undefined") window.MediaStreamTrack = undefined;
-      if (typeof window.RTCPeerConnection !== "undefined") window.RTCPeerConnection = undefined;
-      if (typeof window.RTCSessionDescription !== "undefined") window.RTCSessionDescription = undefined;
-      //
-      if (typeof navigator.mozGetUserMedia !== "undefined") navigator.mozGetUserMedia = undefined;
-      if (typeof window.mozMediaStreamTrack !== "undefined") window.mozMediaStreamTrack = undefined;
-      if (typeof window.mozRTCPeerConnection !== "undefined") window.mozRTCPeerConnection = undefined;
-      if (typeof window.mozRTCSessionDescription !== "undefined") window.mozRTCSessionDescription = undefined;
-      //
-      if (typeof navigator.webkitGetUserMedia !== "undefined") navigator.webkitGetUserMedia = undefined;
-      if (typeof window.webkitMediaStreamTrack !== "undefined") window.webkitMediaStreamTrack = undefined;
-      if (typeof window.webkitRTCPeerConnection !== "undefined") window.webkitRTCPeerConnection = undefined;
-      if (typeof window.webkitRTCSessionDescription !== "undefined") window.webkitRTCSessionDescription = undefined;
-    }
-  },
-  "update": function (o) {
-    var script = document.getElementById("webrtc-control");
-    var head = document.documentElement || document.head || document.querySelector("head");
-    if (!script) {
-      script = document.createElement('script');
-      script.type = "text/javascript";
-      script.setAttribute("id", "webrtc-control");
-      if (head) head.appendChild(script);
-    }
-    /*  */
-    if (o.state === "enabled") {
-      try {
-        var textContent = '';
-        if (o.devices) textContent = textContent + '(' + config.media.devices + ')(); ';
-        if (o.inject) textContent = textContent + '(' + config.support.detection + ')(); ';
+  "update": function (e) {
+    if (e.state === "enabled") {
+      const script = {};
+      /*  */
+      if (e.devices) {
+        script.a = document.getElementById("webrtc-control-a");
         /*  */
-        script.textContent = textContent;
-      } catch (e) {}
-    } else script.textContent = '';
+        if (!script.a) {
+          script.a = document.createElement("script");
+          script.a.type = "text/javascript";
+          script.a.setAttribute("id", "webrtc-control-a");
+          script.a.onload = function () {script.a.remove()};
+          script.a.src = chrome.runtime.getURL("data/content_script/page_context/media_devices.js");
+          /*  */
+          document.documentElement.appendChild(script.a);
+        }
+      }
+      /*  */
+      if (e.inject) {
+        script.b = document.getElementById("webrtc-control-b");
+        /*  */
+        if (!script.b) {
+          script.b = document.createElement("script");
+          script.b.type = "text/javascript";
+          script.b.setAttribute("id", "webrtc-control-b");
+          script.b.onload = function () {script.b.remove()};
+          script.b.src = chrome.runtime.getURL("data/content_script/page_context/support_detection.js");
+          /*  */
+          document.documentElement.appendChild(script.b);
+        }
+      }
+    }
   }
 };
 

@@ -1,38 +1,50 @@
 var background = (function () {
-  var tmp = {};
-  chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-    for (var id in tmp) {
+  let tmp = {};
+  chrome.runtime.onMessage.addListener(function (request) {
+    for (let id in tmp) {
       if (tmp[id] && (typeof tmp[id] === "function")) {
         if (request.path === "background-to-options") {
-          if (request.method === id) tmp[id](request.data);
+          if (request.method === id) {
+            tmp[id](request.data);
+          }
         }
       }
     }
   });
   /*  */
   return {
-    "receive": function (id, callback) {tmp[id] = callback},
-    "send": function (id, data) {chrome.runtime.sendMessage({"path": "options-to-background", "method": id, "data": data})}
+    "receive": function (id, callback) {
+      tmp[id] = callback;
+    },
+    "send": function (id, data) {
+      chrome.runtime.sendMessage({
+        "method": id, 
+        "data": data,
+        "path": "options-to-background"
+      }, function () {
+        return chrome.runtime.lastError;
+      });
+    }
   }
 })();
 
 var config = {
   "render": function (e) {
-    var inject = document.querySelector("#inject");
-    var devices = document.querySelector("#devices");
-    var select = document.querySelector("#method");
+    const inject = document.querySelector("#inject");
+    const devices = document.querySelector("#devices");
+    const select = document.querySelector("#method");
     /*  */
     if (e.webrtc) select.value = e.webrtc;
     if (e.inject) inject.checked = e.inject;
     if (e.devices) devices.checked = e.devices;
   },
   "load": function () {
-    var test = document.querySelector("#test");
-    var inject = document.querySelector("#inject");
-    var select = document.querySelector("#method");
-    var support = document.querySelector("#support");
-    var devices = document.querySelector("#devices");
-    var donation = document.querySelector("#donation");
+    const test = document.querySelector("#test");
+    const inject = document.querySelector("#inject");
+    const select = document.querySelector("#method");
+    const support = document.querySelector("#support");
+    const devices = document.querySelector("#devices");
+    const donation = document.querySelector("#donation");
     /*  */
     test.addEventListener("click", function () {background.send("test")});
     support.addEventListener("click", function () {background.send("support")});

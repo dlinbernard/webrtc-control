@@ -1,10 +1,15 @@
 {
-  "version": "0.2.8",
-  "manifest_version": 2,
+  "version": "0.3.2",
+  "manifest_version": 3,
   "name": "WebRTC Control",
-  "short_name": "webrtc-control",
   "homepage_url": "https://mybrowseraddon.com/webrtc-control.html",
   "description": "Have control over WebRTC (disable | enable) and protect your IP address.",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "commands": {
+    "_execute_action": {}
+  },
   "options_ui": {
     "open_in_tab": true,
     "page": "data/options/options.html"
@@ -12,19 +17,16 @@
   "permissions": [
     "privacy", 
     "storage", 
-    "<all_urls>", 
     "contextMenus"
   ],
-  "background": {
-    "persistent": false,
-    "scripts": [
-      "lib/config.js", 
-      "lib/chrome.js",
-      "lib/runtime.js",
-      "lib/common.js"
+  "web_accessible_resources": [{
+    "matches": ["*://*/*"],
+    "resources": [
+      "data/content_script/page_context/media_devices.js",
+      "data/content_script/page_context/support_detection.js"
     ]
-  },
-  "browser_action": {
+  }],
+  "action": {
     "default_title": "WebRTC Control",
     "default_icon": {
       "16": "data/icons/16.png",
@@ -33,12 +35,14 @@
       "64": "data/icons/64.png"
     }
   },
-  "content_scripts": [{
-		"all_frames": true,
-		"run_at": "document_start",
-		"js": ["data/content_script/inject.js"],
-		"matches": ["http://*/*", "https://*/*", "ftp://*/*"]
-	}],
+  "content_scripts": [
+    {
+      "all_frames": true,
+      "matches": ["*://*/*"],
+      "run_at": "document_start",
+      "js": ["data/content_script/inject.js"]
+    }
+  ],
   "icons": {
     "16": "data/icons/16.png",
     "32": "data/icons/32.png",
