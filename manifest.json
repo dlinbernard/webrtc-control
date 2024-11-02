@@ -1,5 +1,5 @@
 {
-  "version": "0.3.2",
+  "version": "0.3.3",
   "manifest_version": 3,
   "name": "WebRTC Control",
   "homepage_url": "https://mybrowseraddon.com/webrtc-control.html",
@@ -23,7 +23,8 @@
     "matches": ["*://*/*"],
     "resources": [
       "data/content_script/page_context/media_devices.js",
-      "data/content_script/page_context/support_detection.js"
+      "data/content_script/page_context/support_detection.js",
+      "data/content_script/page_context/additional_objects.js"
     ]
   }],
   "action": {

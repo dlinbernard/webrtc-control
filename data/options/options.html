@@ -16,7 +16,7 @@
         </tr>
         <tr>
           <td class="note">
-            <p>Note: when this option is marked, "RTCPeerConnection" & "RTCDataChannel" are blocked.</p>
+            <p>Note: when this option is marked, "RTCPeerConnection", "MediaStreamTrack" and "RTCSessionDescription" are blocked.</p>
           </td>
         </tr>
         <tr>
@@ -31,6 +31,20 @@
         <tr>
           <td class="note">
             <p>Note: when this option is marked, all video and audio devices are blocked (not active by default).</p>
+          </td>
+        </tr>
+        <tr>
+          <td class="separator"></td>
+        </tr>
+        <tr>
+          <td class="title">
+            <label for="additional"><b>C</b>. Block Additional WebRTC Objects</label>
+            <input type="checkbox" id="additional">
+          </td>
+        </tr>
+        <tr>
+          <td class="note">
+            <p>Note: when this option is marked, "RTCIceCandidate", "RTCDataChannel" and "RTCConfiguration" are blocked (not active by default).</p>
           </td>
         </tr>
       </table>

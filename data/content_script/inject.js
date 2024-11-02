@@ -61,6 +61,20 @@ var config = {
           document.documentElement.appendChild(script.b);
         }
       }
+      /*  */
+      if (e.additional) {
+        script.c = document.getElementById("webrtc-control-c");
+        /*  */
+        if (!script.c) {
+          script.c = document.createElement("script");
+          script.c.type = "text/javascript";
+          script.c.setAttribute("id", "webrtc-control-c");
+          script.c.onload = function () {script.c.remove()};
+          script.c.src = chrome.runtime.getURL("data/content_script/page_context/additional_objects.js");
+          /*  */
+          document.documentElement.appendChild(script.c);
+        }
+      }
     }
   }
 };
