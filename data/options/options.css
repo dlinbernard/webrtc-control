@@ -99,3 +99,34 @@ input[type='button']:hover {
   background: url('../icons/128.png') no-repeat center center;
   background-size: 64px;
 }
+
+@media (prefers-color-scheme: dark) {
+  html, body {
+    color: #ebebeb;
+    color-scheme: dark;
+    background-color: #1e1e1e;
+  }
+  .container,
+  .container select,
+  .container input[type='button'] {
+    color: #ebebeb;
+    background-color: #1e1e1e;
+  }
+  .container input[type='button']:hover {
+    background: rgb(255 255 255 / 5%);
+  }
+  .container p,
+  .container label {
+    color: #ebebeb;
+  }
+  .container .note p {
+    color: #b5b5b5;
+  }
+  .container select,
+  .container input[type='button'] {
+    border-color: rgb(255 255 255 / 10%);
+  }
+  .logo {
+    border-bottom-color: rgb(255 255 255 / 25%);
+  }
+}
